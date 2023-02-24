@@ -1,0 +1,54 @@
+<script setup lang="ts">
+  import { RouterLink } from 'vue-router';
+  import { HomeIcon, BookmarkIcon } from '@heroicons/vue/24/outline'
+</script>
+
+<template>
+  <nav>
+    <RouterLink to="/">
+      <div class="navItem">
+        <HomeIcon class="icon" />
+        <span>Home</span>
+      </div>
+    </RouterLink>
+      <RouterLink to="/favorites">
+        <div class="navItem">
+          <BookmarkIcon class="icon" />
+          <span>Favorites</span>
+        </div>
+      </RouterLink>
+  </nav>
+</template>
+
+<style scoped>
+
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.navItem {
+  font-size: 20px;
+  font-weight: 500;
+  padding-inline: 12px;
+  padding-block: 8px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 0.5rem;
+  width: 20px;
+  height: 20px;
+  color: #475569;
+}
+
+.navItem:hover {
+  background-color: #f1f5f9;
+  color: black
+}
+
+</style>
