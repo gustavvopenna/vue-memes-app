@@ -4,23 +4,21 @@ import AppCard from '@/components/molecules/AppCard.vue';
 
 import { useGifs } from '@/composables/useGifs';
 
-const { gifs, addToFavorites, removeFromFavorites, isFavorite } = useGifs();
-
-const handleTap = (gifId: string) => {
-  console.log({ gifId })
-
-  isFavorite(gifId)
-    ? removeFromFavorites(gifId)
-    : addToFavorites(gifId);
-}
+const { gifs, handleFavorite } = useGifs();
 </script>
 
 <template>
   <section>
     <div class="container">
       <AppCardsGrid>
-        <AppCard v-for="gif in gifs" :key="gif.title" :image="gif.images.preview_gif.url" :title="gif.title"
-          @tap="handleTap" :id="gif.id">
+        <AppCard
+          v-for="gif in gifs"
+          :key="gif.title"
+          :image="gif.images.preview_gif.url"
+          :title="gif.title"
+          :id="gif.id"
+          @tap="handleFavorite"
+        >
           <template #description>
             {{ gif.images.preview_gif.width }} x {{ gif.images.preview_gif.height }}
           </template>
