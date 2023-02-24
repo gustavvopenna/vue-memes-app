@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue';
-import { useGifsStore } from '@/stores/gifs';
+import { useMemesStore } from '@/stores/memes';
 
-
-const giphyStore = useGifsStore();
-const gifs = computed(() => giphyStore.gifs);
+const store = useMemesStore();
+const memes = computed(() => store.memes);
 
 onMounted(() => {
-  if(gifs.value.length === 0) {
-    giphyStore.fetchTranding()
+  if(memes.value.length === 0) {
+    store.fetchMemes()
   }
 });
 </script>
@@ -16,16 +15,16 @@ onMounted(() => {
 <template>
   <main>
     <div class="container">
-      <div v-for="gif in gifs" :key="gif.title">
+      <div v-for="meme in memes" :key="meme.name">
         <div class="card">
           <div class="imageContainer">
-            <img :src="gif.images.preview_gif.url" class="image" />
+            <img :src="meme.url" class="image" />
           </div>
           <div class="cardContent">
-            <h3 class="cardName">{{ gif.title }}</h3>
+            <h3 class="cardName">{{ meme.name }}</h3>
             <span class="cardImageSize">
-              {{ gif.images.preview_gif.width }} x
-              {{ gif.images.preview_gif.height }}
+              {{ meme.width }} x
+              {{ meme.height }}
             </span>
           </div>
         </div>
@@ -38,6 +37,7 @@ onMounted(() => {
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: mansory;
   gap: 12px;
 }
 
@@ -68,10 +68,5 @@ imageContainer {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-@media screen and (max-width: 768px) { 
-  .container {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 </style>

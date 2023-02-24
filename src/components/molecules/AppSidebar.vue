@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { RouterLink } from 'vue-router';
-  import { HomeIcon, BookmarkIcon } from '@heroicons/vue/24/outline'
+  import { HomeIcon, BookmarkIcon, NewspaperIcon } from '@heroicons/vue/24/outline'
 </script>
 
 <template>
@@ -11,12 +11,18 @@
         <span>Home</span>
       </div>
     </RouterLink>
-      <RouterLink to="/favorites">
-        <div class="navItem">
-          <BookmarkIcon class="icon" />
-          <span>Favorites</span>
-        </div>
-      </RouterLink>
+    <RouterLink to="/favorites">
+      <div class="navItem">
+        <BookmarkIcon class="icon" />
+        <span>Favorites</span>
+      </div>
+    </RouterLink>
+    <RouterLink to="/memes">
+      <div class="navItem">
+        <NewspaperIcon class="icon" />
+        <span>Memes</span>
+      </div>
+    </RouterLink>
   </nav>
 </template>
 

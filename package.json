@@ -13,6 +13,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@giphy/js-fetch-api": "^4.7.1",
     "@heroicons/vue": "^2.0.16",
     "axios": "^1.3.4",
     "pinia": "^2.0.32",

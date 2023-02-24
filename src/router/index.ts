@@ -13,7 +13,12 @@ const router = createRouter({
       path: '/favorites',
       name: 'favorites',
       component: () => import('../views/FavoritesView.vue')
-    }
+    },
+    {
+      path: '/memes',
+      name: 'memes',
+      component: () => import('../views/MemesView.vue')
+    },
   ]
 })
 
