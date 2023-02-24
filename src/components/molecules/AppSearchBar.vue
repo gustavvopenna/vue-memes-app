@@ -1,17 +1,36 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
 import { useGifsStore } from '@/stores/gifs';
 
-const { fetchSearch, searchQuery } = useGifsStore();
+const router = useRouter()
+const { fetchSearch } = useGifsStore();
+
+const searchQuery = ref('');
+
+const handleSubmit = (query: string) => {
+  if(router.currentRoute.value.name === 'home') {
+    fetchSearch(query);
+    searchQuery.value = '';
+    return;
+  }
+
+  router.push({ name: 'home' }).then(() => {
+    fetchSearch(query);
+    searchQuery.value = '';
+  })
+}
 </script>
 
 <template>
   <div>
-    <form @submit.prevent="fetchSearch(searchQuery)" class="wrapper">
+    <form @submit.prevent="handleSubmit(searchQuery)" class="wrapper">
       <input
         type="text"
-        placeholder="Gatos, perros, etc."
+        placeholder="Buscar gatos, perros, etc."
         v-model="searchQuery"
-        class="searchbar__input"
+        class="searchbarInput"
       />
       <input
         type="submit"
@@ -27,16 +46,16 @@ const { fetchSearch, searchQuery } = useGifsStore();
   display: flex;
   gap: 0.5rem;
 }
-.searchbar__input {
+.searchbarInput {
   width: 100%;
   padding: 0.5rem;
-  border: 2px solid #ccc;
+  border: 2px solid transparent;
   border-radius: 0.5rem;
   font-size: 1rem;
   outline: none;
 }
 
-.searchbar__input:focus {
+.searchbarInput:focus {
   border: 2px solid dodgerblue;
 }
 

@@ -19,7 +19,7 @@ export function useGifs () {
 
   onMounted(() => {
     if(gifs.value.length === 0) {
-      giphyStore.fetchTranding()
+      giphyStore.fetchTrending()
     }
   });
 

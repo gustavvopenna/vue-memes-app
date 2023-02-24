@@ -13,7 +13,6 @@ interface Meme {
 
 export const useMemesStore = defineStore('memes', () => {
   const memes = ref<Meme[]>([]);
-  const searchQuery = ref('');
 
   const fetchMemes = async () => {
     const { data } = await getMemesService()
@@ -21,14 +20,12 @@ export const useMemesStore = defineStore('memes', () => {
   };
 
   const searchMemes = async (query: string) => {
-    console.log({ query })
     const { data } = await searchMemesService(query);
     memes.value = data.memes;
   }
 
   return {
     memes,
-    searchQuery,
     fetchMemes,
     searchMemes
   }

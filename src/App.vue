@@ -2,6 +2,7 @@
 import { RouterView } from 'vue-router'
 import AppSearchBar from './components/molecules/AppSearchBar.vue';
 import AppSidebar from './components/molecules/AppSidebar.vue';
+import AppFooter from './components/molecules/AppFooter.vue';
 
 </script>
 
@@ -20,7 +21,7 @@ import AppSidebar from './components/molecules/AppSidebar.vue';
     </main>
   
     <footer>
-      Footer
+      <AppFooter />
     </footer>
   </div>
 </template>
@@ -28,8 +29,8 @@ import AppSidebar from './components/molecules/AppSidebar.vue';
 <style scoped>
 .layout {
   display: grid;
-  grid-template-columns: 300px 1fr;
-  grid-template-rows: min-content 1fr 50px;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: min-content 1fr min-content;
   grid-template-areas: 
     "sidebar searchbar"
     "sidebar main"
@@ -41,6 +42,8 @@ header {
   grid-area: sidebar;
   padding: 1rem 0;
   border-right: 2px solid #f1f5f9;
+  background-color: #4338ca;
+  color: #e0e7ff;
   align-self: start;
   position: sticky;
   top: 0;

@@ -7,15 +7,13 @@ import { giphyApi } from '@/services/giphyApi';
 export const useGifsStore = defineStore('gifs', () => {
   const gifs = ref<GifsResult['data']>([]);
   const favorites = ref<Set<string>>(new Set());
-  const searchQuery = ref('');
 
-  const fetchTranding = async () => {
+  const fetchTrending = async () => {
     const response = await giphyApi.trending({ limit: 28, rating: 'g' })
     gifs.value = response.data;
   }
 
   const fetchSearch = async (query: string) => {
-    console.log({ query });
     const response = await giphyApi.search(query, { limit: 28, rating: 'g' })
     gifs.value = response.data;
   }
@@ -35,8 +33,7 @@ export const useGifsStore = defineStore('gifs', () => {
   return {
     gifs,
     favorites,
-    searchQuery,
-    fetchTranding,
+    fetchTrending,
     fetchSearch,
     addToFavorites,
     removeFromFavorites,
