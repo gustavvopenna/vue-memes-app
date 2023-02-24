@@ -1,34 +1,19 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue';
-import { useGifsStore } from '@/stores/gifs';
+import AppCard from '@/components/molecules/AppCard.vue';
+import { useGifs } from '@/composables/useGifs';
 
-
-const giphyStore = useGifsStore();
-const gifs = computed(() => giphyStore.gifs);
-
-onMounted(() => {
-  if(gifs.value.length === 0) {
-    giphyStore.fetchTranding()
-  }
-});
+const { gifs } = useGifs();
 </script>
 
 <template>
   <main>
     <div class="container">
       <div v-for="gif in gifs" :key="gif.title">
-        <div class="card">
-          <div class="imageContainer">
-            <img :src="gif.images.preview_gif.url" class="image" />
-          </div>
-          <div class="cardContent">
-            <h3 class="cardName">{{ gif.title }}</h3>
-            <span class="cardImageSize">
-              {{ gif.images.preview_gif.width }} x
-              {{ gif.images.preview_gif.height }}
-            </span>
-          </div>
-        </div>
+        <AppCard :image="gif.images.preview_gif.url" :title="gif.title">
+          <template #description>
+            {{ gif.images.preview_gif.width }} x {{ gif.images.preview_gif.height }}
+          </template>
+        </AppCard>
       </div>
     </div>
   </main>
@@ -41,34 +26,6 @@ onMounted(() => {
   gap: 12px;
 }
 
-.card {
-  background-color: #f8fafc;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.cardContent {
-  padding: 12px;
-}
-
-.cardName {
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.cardImageSize {
-  font-size: 12px;
-  color: #475569;
-}
-
-imageContainer {
-  max-width: 150px;
-}
-.image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 @media screen and (max-width: 768px) { 
   .container {
     grid-template-columns: repeat(2, 1fr);
