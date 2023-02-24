@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 
+import AppCardsGrid from '@/components/molecules/AppCardsGrid.vue';
+import AppCard from '@/components/molecules/AppCard.vue';
+
 import { useGifs } from '@/composables/useGifs';
 import { giphyApi } from '@/services/giphyApi';
-import AppCard from '@/components/molecules/AppCard.vue';
-import AppCardsGrid from '@/components/molecules/AppCardsGrid.vue';
+import type { GifsResult } from '@giphy/js-fetch-api';
 
 const { favorites: favoritesIds } = useGifs()
-const favorites = ref([])
+const favorites = ref<GifsResult['data']>([])
 
 onMounted(() => {
   favoritesIds.value.forEach(async (id) => {

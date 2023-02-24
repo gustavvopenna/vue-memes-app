@@ -21,7 +21,15 @@ export const useGifsStore = defineStore('gifs', () => {
   }
 
   const addToFavorites = (gifId: string) => {
-    favorites.value = favorites.value.add(gifId);
+    favorites.value.add(gifId);
+  }
+
+  const removeFromFavorites = (gifId: string) => {
+    favorites.value.delete(gifId);
+  }
+
+  const isFavorite = (gifId: string) => {
+    return favorites.value.has(gifId);
   }
 
   return {
@@ -30,6 +38,8 @@ export const useGifsStore = defineStore('gifs', () => {
     searchQuery,
     fetchTranding,
     fetchSearch,
-    addToFavorites
+    addToFavorites,
+    removeFromFavorites,
+    isFavorite
   }
 });

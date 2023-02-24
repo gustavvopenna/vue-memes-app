@@ -7,6 +7,8 @@ export function useGifs () {
   const gifs = computed(() => giphyStore.gifs);
   const favorites = computed(() => giphyStore.favorites);
   const addToFavorites = giphyStore.addToFavorites;
+  const removeFromFavorites = giphyStore.removeFromFavorites;
+  const isFavorite = giphyStore.isFavorite;
 
   onMounted(() => {
     if(gifs.value.length === 0) {
@@ -17,6 +19,8 @@ export function useGifs () {
   return {
     gifs,
     favorites,
-    addToFavorites
+    addToFavorites,
+    removeFromFavorites,
+    isFavorite
   }
 }

@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import AppCardsGrid from '@/components/molecules/AppCardsGrid.vue';
 import AppCard from '@/components/molecules/AppCard.vue';
+
 import { useGifs } from '@/composables/useGifs';
 
-const { gifs, addToFavorites } = useGifs();
+const { gifs, addToFavorites, removeFromFavorites, isFavorite } = useGifs();
 
 const handleTap = (gifId: string) => {
   console.log({ gifId })
-  addToFavorites(gifId);
+
+  isFavorite(gifId)
+    ? removeFromFavorites(gifId)
+    : addToFavorites(gifId);
 }
 </script>
 
