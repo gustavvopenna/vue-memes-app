@@ -21,7 +21,7 @@ const props = defineProps<{
 
 <style scoped>
 .card {
-  background-color: #f8fafc;
+  background-color: white;
   border-radius: 6px;
   overflow: hidden;
 }

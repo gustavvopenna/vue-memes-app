@@ -5,19 +5,19 @@
 
 <template>
   <nav>
-    <RouterLink to="/">
+    <RouterLink to="/" active-class="active">
       <div class="navItem">
         <HomeIcon class="icon" />
         <span>Home</span>
       </div>
     </RouterLink>
-    <RouterLink to="/favorites">
+    <RouterLink to="/favorites" active-class="active">
       <div class="navItem">
         <BookmarkIcon class="icon" />
         <span>Favorites</span>
       </div>
     </RouterLink>
-    <RouterLink to="/memes">
+    <RouterLink to="/memes" active-class="active">
       <div class="navItem">
         <NewspaperIcon class="icon" />
         <span>Memes</span>
@@ -37,7 +37,6 @@ nav {
 
 .navItem {
   font-size: 20px;
-  font-weight: 500;
   padding-inline: 12px;
   padding-block: 8px;
   border-radius: 12px;
@@ -55,6 +54,18 @@ nav {
 .navItem:hover {
   background-color: #f1f5f9;
   color: black
+}
+
+.active .navItem {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.active .navItem span {
+  font-weight: 500;
+}
+.active .navItem svg {
+  stroke: white;
 }
 
 </style>

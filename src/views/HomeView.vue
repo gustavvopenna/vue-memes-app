@@ -6,7 +6,7 @@ const { gifs } = useGifs();
 </script>
 
 <template>
-  <main>
+  <section>
     <div class="container">
       <div v-for="gif in gifs" :key="gif.title">
         <AppCard :image="gif.images.preview_gif.url" :title="gif.title">
@@ -16,7 +16,7 @@ const { gifs } = useGifs();
         </AppCard>
       </div>
     </div>
-  </main>
+  </section>
 </template>
 
 <style scoped>
