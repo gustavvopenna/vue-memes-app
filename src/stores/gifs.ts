@@ -6,6 +6,7 @@ import { giphyApi } from '@/services/giphyApi';
 
 export const useGifsStore = defineStore('gifs', () => {
   const gifs = ref<GifsResult['data']>([]);
+  const favorites = ref<Set<string>>(new Set());
   const searchQuery = ref('');
 
   const fetchTranding = async () => {
@@ -19,10 +20,16 @@ export const useGifsStore = defineStore('gifs', () => {
     gifs.value = response.data;
   }
 
+  const addToFavorites = (gifId: string) => {
+    favorites.value = favorites.value.add(gifId);
+  }
+
   return {
     gifs,
+    favorites,
     searchQuery,
     fetchTranding,
-    fetchSearch
+    fetchSearch,
+    addToFavorites
   }
 });

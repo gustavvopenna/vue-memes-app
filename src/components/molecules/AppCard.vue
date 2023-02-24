@@ -1,12 +1,19 @@
 <script setup lang="ts">
+import type { GifsResult } from '@giphy/js-fetch-api'
+
 const props = defineProps<{
   image: string;
   title: string;
+  id?: string;
+}>();
+
+const emit = defineEmits<{
+  (e: 'tap', id: string): void;
 }>();
 </script>
 
 <template>
-  <div class="card">
+  <div class="card" @click="$emit('tap', props.id)">
     <div class="imageContainer">
       <img :src="props.image" class="image" />
     </div>
